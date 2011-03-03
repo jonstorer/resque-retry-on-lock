@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.summary           = "A Resque plugin for ensuring only one instance of your job is running at a time, re-enqueuing duplicates."
   s.homepage          = "https://github.com/RecycleBank/resque-retry-on-lock"
   s.email             = "chris@ozmm.org"
-  s.authors           = [ "Chris Wanstrath" ]
+  s.authors           = [ "Jonathon Storer", "Mark Kassal" ]
   s.has_rdoc          = false
 
   s.files             = %w( README.md Rakefile LICENSE )
@@ -14,12 +14,13 @@ Gem::Specification.new do |s|
 
   s.description       = <<desc
 A Resque plugin. If you want only one instance of your job
-running at a time, extend it with this module.
+running at a time, but want to re-enqueue [term] jobs, 
+extend it with this module.
 
 For example:
 
     class UpdateNetworkGraph
-      extend Resque::Jobs::Locked
+      extend Resque::Jobs::RetryOnLocked
 
       def self.perform(repo_id)
         heavy_lifting
