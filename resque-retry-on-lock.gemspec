@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "resque-retry-on-lock"
-  s.version           = "0.0.2"
+  s.version           = "0.0.3"
   s.date              = Time.now.strftime('%Y-%m-%d')
   s.summary           = "A Resque plugin for ensuring only one instance of your job is running at a time, re-enqueuing duplicates."
   s.homepage          = "https://github.com/jonstorer/resque-retry-on-lock"
