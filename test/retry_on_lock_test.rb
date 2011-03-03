@@ -5,7 +5,7 @@ require 'resque/plugins/retry_on_lock'
 
 $counter = 0
 
-class Job
+class TestJob
   extend Resque::Plugins::RetryOnLock
   @queue = :test
 
@@ -29,18 +29,19 @@ class LockTest < Test::Unit::TestCase
   end
 
   def test_lock
-    (count = 3).times { Resque.enqueue(Job) }
-    worker = Resque::Worker.new(Job.instance_eval{@queue})
+    (count = 3).times { Resque.enqueue(TestJob) }
+    worker = Resque::Worker.new(TestJob.instance_eval{@queue})
 
-    until (size = Resque.size(Job.instance_eval{@queue}.to_s)).zero? do
+    until (size = Resque.size(TestJob.instance_eval{@queue}.to_s)).zero? do
       workers = []
       size.times { workers << Thread.new { worker.process } }
       workers.each { |t| t.join }
+
       assert_equal (count - size + 1), $counter
-      assert_equal (size - 1), Resque.size(Job.instance_eval{@queue}.to_s)
+      assert_equal (size - 1 ), Resque.size(TestJob.instance_eval{@queue}.to_s)
     end
 
-    assert_equal count,$counter
+    assert_equal count, $counter
 
   end
 end

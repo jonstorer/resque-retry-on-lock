@@ -50,7 +50,7 @@ module Resque
       end
 
       # Where the magic happens.
-      def around_perform_lock(*args)
+      def around_perform_lock_and_requeue(*args)
         # Re-Enqueue if another job has created a lock.
         if Resque.redis.setnx(lock(*args), true)
           begin
