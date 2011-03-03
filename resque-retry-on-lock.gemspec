@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name              = "resque-retry-on-lock"
-  s.version           = "0.1.1"
+  s.version           = "0.0.2"
   s.date              = Time.now.strftime('%Y-%m-%d')
   s.summary           = "A Resque plugin for ensuring only one instance of your job is running at a time, re-enqueuing duplicates."
-  s.homepage          = "https://github.com/RecycleBank/resque-retry-on-lock"
-  s.email             = "chris@ozmm.org"
+  s.homepage          = "https://github.com/jonstorer/resque-retry-on-lock"
+  s.email             = "me@jonathonstorer.com"
   s.authors           = [ "Jonathon Storer", "Mark Kassal" ]
   s.has_rdoc          = false
 
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.description       = <<desc
 A Resque plugin. If you want only one instance of your job
-running at a time, but want to re-enqueue [term] jobs, 
+running at a time, but want to re-enqueue rejected jobs, 
 extend it with this module.
 
 For example:

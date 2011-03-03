@@ -31,7 +31,7 @@ end
 
 begin
   require 'mg'
-  MG.new("resque-lock.gemspec")
+  MG.new("resque-retry-on-lock.gemspec")
 
   desc "Build a gem."
   task :gem => :package
